@@ -9,7 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Иконки FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Твой стиль -->
+    
+    <!-- !!! BOOTSTRAP 5 (CDN) !!! -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Твой стиль (ПОСЛЕ Bootstrap) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,10 +21,14 @@
     <!-- HEADER -->
     <header class="header">
         <div class="container header__inner">
-            <a href="#" class="logo">
-                Подарыч
-            </a>
-
+            <a href="#" class="logo">Подарыч</a>
+            
+            <nav class="nav" id="navMenu">
+                <!-- Ссылки с якорями -->
+                <a href="#catalog" class="nav__link">Наборы</a>
+                <a href="#delivery" class="nav__link">Доставка</a>
+                <a href="#order" class="nav__link">Заказать</a>
+            </nav>
 
             <div class="header__contacts">
                 <a href="tel:+79825683415" class="phone">+7 (982) 568-34-15</a>
@@ -59,14 +67,8 @@
             </div>
             
             <div class="hero__image-wrapper">
+                <!-- Плавающие карточки (декор) -->
                 
-                <div class="floating-card fc-delivery">
-                    <div class="floating-card__icon"><i class="fas fa-truck"></i></div>
-                    <div>
-                        <div class="floating-card__text">Быстрая доставка</div>
-                        <div class="floating-card__subtext">от 2 часов по городу</div>
-                    </div>
-                </div>
 
                 <div class="floating-card fc-packaging">
                     <div class="floating-card__icon"><i class="fas fa-gift"></i></div>
@@ -95,32 +97,41 @@
                 <p class="section-subtitle">Мы делаем процесс выбора подарка простым и приятным</p>
             </div>
             
-            <div class="features__grid">
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-gift"></i></div>
-                    <h3 class="feature-title">Готовая упаковка</h3>
-                    <p class="feature-text">Все наборы красиво упакованы. Открытка в подарок к каждому заказу.</p>
+            <!-- Bootstrap Grid -->
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-3 reveal">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon"><i class="fas fa-gift"></i></div>
+                        <h3 class="feature-title">Готовая упаковка</h3>
+                        <p class="feature-text">Все наборы красиво упакованы. Открытка в подарок к каждому заказу.</p>
+                    </div>
                 </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
-                    <h3 class="feature-title">Доставка за 2 часа</h3>
-                    <p class="feature-text">Привезем заказ в день обращения или в удобное для вас время.</p>
+                <div class="col-12 col-md-6 col-lg-3 reveal">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
+                        <h3 class="feature-title">Доставка за 2 часа</h3>
+                        <p class="feature-text">Привезем заказ в день обращения или в удобное для вас время.</p>
+                    </div>
                 </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3 class="feature-title">Безопасно</h3>
-                    <p class="feature-text">Только сертифицированные товары и гипоаллергенные материалы.</p>
+                <div class="col-12 col-md-6 col-lg-3 reveal">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="feature-title">Безопасно</h3>
+                        <p class="feature-text">Только сертифицированные товары и гипоаллергенные материалы.</p>
+                    </div>
                 </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="fas fa-heart"></i></div>
-                    <h3 class="feature-title">С любовью</h3>
-                    <p class="feature-text">Мы сами родители и знаем, что понравится вашему ребенку.</p>
+                <div class="col-12 col-md-6 col-lg-3 reveal">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                        <h3 class="feature-title">С любовью</h3>
+                        <p class="feature-text">Мы сами родители и знаем, что понравится вашему ребенку.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CATALOG -->
+    <!-- CATALOG (ID="catalog") -->
     <section class="catalog" id="catalog">
         <div class="container">
             <div class="section-header reveal">
@@ -135,81 +146,94 @@
                 <button class="filter-btn" data-filter="universal">Универсальные</button>
             </div>
 
-            <div class="products-grid">
+            <!-- Bootstrap Grid -->
+            <div class="row g-4">
                 <!-- Товар 1 -->
-                <div class="product-card reveal" data-category="boy">
-                    <img src="Ученый (1).webp" alt="Набор Юный ученый" class="product-image" loading="lazy">
-                    <div class="product-content">
-                        <span class="product-tag">Для мальчиков</span>
-                        <h3 class="product-title">Юный учёный</h3>
-                        <div class="product-footer">
-                            <span class="product-price">2 490 ₽</span>
-                            <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                <div class="col-12 col-md-6 col-lg-4 reveal">
+                    <div class="product-card h-100" data-category="boy">
+                        <img src="Ученый (1).webp" alt="Набор Юный ученый" class="product-image w-100" loading="lazy">
+                        <div class="product-content">
+                            <span class="product-tag">Для мальчиков</span>
+                            <h3 class="product-title">Юный учёный</h3>
+                            <div class="product-footer">
+                                <span class="product-price">2 490 ₽</span>
+                                <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Товар 2 -->
-                <div class="product-card reveal" data-category="boy">
-                    <img src="Для мальчика (1).webp" alt="Набор Для настоящего мальчика" class="product-image" loading="lazy">
-                    <div class="product-content">
-                        <span class="product-tag">Для мальчиков</span>
-                        <h3 class="product-title">Для настоящего мальчика</h3>
-                        <div class="product-footer">
-                            <span class="product-price">1 990 ₽</span>
-                            <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                <div class="col-12 col-md-6 col-lg-4 reveal">
+                    <div class="product-card h-100" data-category="boy">
+                        <img src="Для мальчика (1).webp" alt="Набор Для настоящего мальчика" class="product-image w-100" loading="lazy">
+                        <div class="product-content">
+                            <span class="product-tag">Для мальчиков</span>
+                            <h3 class="product-title">Для настоящего мальчика</h3>
+                            <div class="product-footer">
+                                <span class="product-price">1 990 ₽</span>
+                                <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Товар 3 -->
-                <div class="product-card reveal" data-category="girl">
-                    <img src="Для девочки (1).webp" alt="Набор Для любой девочки" class="product-image" loading="lazy">
-                    <div class="product-content">
-                        <span class="product-tag">Для девочек</span>
-                        <h3 class="product-title">Для любой девочки</h3>
-                        <div class="product-footer">
-                            <span class="product-price">1 990 ₽</span>
-                            <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                <div class="col-12 col-md-6 col-lg-4 reveal">
+                    <div class="product-card h-100" data-category="girl">
+                        <img src="Для девочки (1).webp" alt="Набор Для любой девочки" class="product-image w-100" loading="lazy">
+                        <div class="product-content">
+                            <span class="product-tag">Для девочек</span>
+                            <h3 class="product-title">Для любой девочки</h3>
+                            <div class="product-footer">
+                                <span class="product-price">1 990 ₽</span>
+                                <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Товар 4 -->
-                <div class="product-card reveal" data-category="universal">
-                    <img src="Геймер (1).webp" alt="Набор Геймер" class="product-image" loading="lazy">
-                    <div class="product-content">
-                        <span class="product-tag">Универсальный</span>
-                        <h3 class="product-title">Геймер</h3>
-                        <div class="product-footer">
-                            <span class="product-price">2 690 ₽</span>
-                            <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                <div class="col-12 col-md-6 col-lg-4 reveal">
+                    <div class="product-card h-100" data-category="universal">
+                        <img src="Геймер (1).webp" alt="Набор Геймер" class="product-image w-100" loading="lazy">
+                        <div class="product-content">
+                            <span class="product-tag">Универсальный</span>
+                            <h3 class="product-title">Геймер</h3>
+                            <div class="product-footer">
+                                <span class="product-price">2 690 ₽</span>
+                                <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Товар 5 -->
-                <div class="product-card reveal" data-category="universal">
-                    <img src="Художник (1).webp" alt="Набор Творец" class="product-image" loading="lazy">
-                    <div class="product-content">
-                        <span class="product-tag">Универсальный</span>
-                        <h3 class="product-title">Творец</h3>
-                        <div class="product-footer">
-                            <span class="product-price">1 990 ₽</span>
-                            <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                <div class="col-12 col-md-6 col-lg-4 reveal">
+                    <div class="product-card h-100" data-category="universal">
+                        <img src="Художник (1).webp" alt="Набор Творец" class="product-image w-100" loading="lazy">
+                        <div class="product-content">
+                            <span class="product-tag">Универсальный</span>
+                            <h3 class="product-title">Творец</h3>
+                            <div class="product-footer">
+                                <span class="product-price">1 990 ₽</span>
+                                <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Товар 6 -->
-                <div class="product-card reveal" data-category="universal">
-                    <img src="Приключения (1).webp" alt="Набор Приключение" class="product-image" loading="lazy">
-                    <div class="product-content">
-                        <span class="product-tag">Универсальный</span>
-                        <h3 class="product-title">Приключение</h3>
-                        <div class="product-footer">
-                            <span class="product-price">2 390 ₽</span>
-                            <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                <div class="col-12 col-md-6 col-lg-4 reveal">
+                    <div class="product-card h-100" data-category="universal">
+                        <img src="Приключения (1).webp" alt="Набор Приключение" class="product-image w-100" loading="lazy">
+                        <div class="product-content">
+                            <span class="product-tag">Универсальный</span>
+                            <h3 class="product-title">Приключение</h3>
+                            <div class="product-footer">
+                                <span class="product-price">2 390 ₽</span>
+                                <a href="#order" class="btn-order"><i class="fas fa-shopping-bag"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -225,32 +249,40 @@
                 <p class="section-subtitle">Всего 4 простых шага до счастливого ребенка</p>
             </div>
 
-            <div class="steps-grid">
-                <div class="step-card reveal">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Выберите набор</h3>
-                    <p class="step-text">Изучите каталог и выберите идеальный подарок по интересам.</p>
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-3 reveal">
+                    <div class="step-card h-100">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Выберите набор</h3>
+                        <p class="step-text">Изучите каталог и выберите идеальный подарок по интересам.</p>
+                    </div>
                 </div>
-                <div class="step-card reveal">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Оставьте заявку</h3>
-                    <p class="step-text">Заполните простую форму на сайте или напишите нам.</p>
+                <div class="col-12 col-md-6 col-lg-3 reveal">
+                    <div class="step-card h-100">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Оставьте заявку</h3>
+                        <p class="step-text">Заполните простую форму на сайте или напишите нам.</p>
+                    </div>
                 </div>
-                <div class="step-card reveal">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Мы упакуем</h3>
-                    <p class="step-text">Соберем набор, добавим открытку и красиво упакуем.</p>
+                <div class="col-12 col-md-6 col-lg-3 reveal">
+                    <div class="step-card h-100">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Мы упакуем</h3>
+                        <p class="step-text">Соберем набор, добавим открытку и красиво упакуем.</p>
+                    </div>
                 </div>
-                <div class="step-card reveal">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Доставим</h3>
-                    <p class="step-text">Курьер привезет подарок в удобное время и место.</p>
+                <div class="col-12 col-md-6 col-lg-3 reveal">
+                    <div class="step-card h-100">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Доставим</h3>
+                        <p class="step-text">Курьер привезет подарок в удобное время и место.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- DELIVERY INFO -->
+    <!-- DELIVERY INFO (ID="delivery") -->
     <section class="delivery" id="delivery">
         <div class="container">
             <div class="section-header reveal">
@@ -258,30 +290,36 @@
                 <p class="section-subtitle">Быстро и удобно по всему городу</p>
             </div>
 
-            <div class="delivery-grid">
-                <div class="delivery-card reveal">
-                    <div class="delivery-icon">⚡</div>
-                    <h3 class="delivery-title">Срочная доставка</h3>
-                    <p>Привезем заказ в течение 2 часов после оформления.</p>
-                    <span class="delivery-price">300 ₽</span>
+            <div class="row g-4">
+                <div class="col-12 col-md-4 reveal">
+                    <div class="delivery-card h-100">
+                        <div class="delivery-icon">⚡</div>
+                        <h3 class="delivery-title">Срочная доставка</h3>
+                        <p>Привезем заказ в течение 2 часов после оформления.</p>
+                        <span class="delivery-price">300 ₽</span>
+                    </div>
                 </div>
-                <div class="delivery-card reveal">
-                    <div class="delivery-icon">📅</div>
-                    <h3 class="delivery-title">В день заказа</h3>
-                    <p>Доставка в течение дня, если заказ оформлен до 18:00.</p>
-                    <span class="delivery-price">200 ₽</span>
+                <div class="col-12 col-md-4 reveal">
+                    <div class="delivery-card h-100">
+                        <div class="delivery-icon">📅</div>
+                        <h3 class="delivery-title">В день заказа</h3>
+                        <p>Доставка в течение дня, если заказ оформлен до 18:00.</p>
+                        <span class="delivery-price">200 ₽</span>
+                    </div>
                 </div>
-                <div class="delivery-card reveal">
-                    <div class="delivery-icon">🎉</div>
-                    <h3 class="delivery-title">Бесплатно</h3>
-                    <p>Бесплатная доставка при заказе от 5000 рублей.</p>
-                    <span class="delivery-price">0 ₽</span>
+                <div class="col-12 col-md-4 reveal">
+                    <div class="delivery-card h-100">
+                        <div class="delivery-icon"></div>
+                        <h3 class="delivery-title">Бесплатно</h3>
+                        <p>Бесплатная доставка при заказе от 5000 рублей.</p>
+                        <span class="delivery-price">0 ₽</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ORDER FORM -->
+    <!-- ORDER FORM (ID="order") -->
     <section class="order-form-section" id="order">
         <div class="container">
             <div class="section-header reveal">
@@ -328,28 +366,22 @@
     <!-- FOOTER -->
     <footer class="footer" id="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div>
+            <div class="row g-4 footer-grid">
+                <div class="col-12 col-lg-4">
                     <a href="#" class="footer-logo">Подарыч</a>
                     <p class="footer-text">Сервис подарочных наборов для детей. Дарим эмоции и радость с 2026 года.</p>
                 </div>
-                <div>
+                <div class="col-6 col-lg-2">
                     <h4 class="footer-title">Навигация</h4>
+                    <!-- Важно: ul без классов Bootstrap, чтобы не ломать стиль -->
                     <ul class="footer-links">
                         <li><a href="#catalog">Наборы</a></li>
                         <li><a href="#delivery">Доставка</a></li>
                         <li><a href="#order">Заказать</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h4 class="footer-title">Категории</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Мальчикам</a></li>
-                        <li><a href="#">Девочкам</a></li>
-                        <li><a href="#">Универсальные</a></li>
-                    </ul>
-                </div>
-                <div>
+                
+                <div class="col-12 col-lg-4">
                     <h4 class="footer-title">Контакты</h4>
                     <ul class="footer-links">
                         <li><a href="tel:+79825683415">+7 (982) 568-34-15</a></li>
@@ -364,7 +396,8 @@
         </div>
     </footer>
 
-    <!-- Подключение скрипта -->
+    <!-- Скрипты -->
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

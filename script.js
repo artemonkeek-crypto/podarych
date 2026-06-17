@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     window.addEventListener("scroll", reveal);
-    reveal(); // Запуск один раз при загрузке
+    reveal(); 
 
     // 3. Фильтрация товаров
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -49,15 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filterButtons.length > 0) {
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Удаляем класс active со всех кнопок
                 filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Добавляем класс active нажатой кнопке
                 button.classList.add('active');
                 
-                // Получаем категорию для фильтрации
                 const filterValue = button.getAttribute('data-filter');
                 
-                // Фильтруем товары
                 productCards.forEach(card => {
                     const category = card.getAttribute('data-category');
                     
@@ -77,23 +73,53 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 4. Обработка формы (Имитация отправки)
+    // 4. ВАЛИДАЦИЯ И ОТПРАВКА ФОРМЫ (СТРОГАЯ ПРОВЕРКА)
     const orderForm = document.getElementById('orderForm');
+    
     if (orderForm) {
         orderForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            e.preventDefault(); 
             
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const product = document.getElementById('productSelect').value;
+            // Получаем значения и убираем лишние пробелы по краям
+            const nameInput = document.getElementById('name');
+            const phoneInput = document.getElementById('phone');
+            const productSelect = document.getElementById('productSelect');
             
-            if(name.length < 2 || phone.length < 10) {
-                alert('Пожалуйста, проверьте правильность введенных данных.');
+            const name = nameInput.value.trim();
+            const phone = phoneInput.value.trim();
+            const product = productSelect.value;
+            
+            let errorMessage = '';
+
+            // Регулярное выражение: только кириллица, минимум 2 символа
+            // ^[А-Яа-яЁё\s]{2,}$ означает: начало строки, русские буквы или пробел, 2+ раза, конец строки
+            const nameRegex = /^[А-Яа-яЁё\s]{2,}$/;
+
+            // Проверка имени
+            if (!nameRegex.test(name)) {
+                errorMessage = 'Пожалуйста, введите корректное имя (минимум 2 буквы, только кириллица).';
+            } 
+            // Проверка телефона (минимум 10 символов, цифры/плюс/скобки/тире)
+            else if (phone.length < 10 || !/^[\d\+\-\(\)\s]{10,}$/.test(phone)) {
+                errorMessage = 'Пожалуйста, введите корректный номер телефона.';
+            }
+            // Проверка выбора набора
+            else if (!product || product === '') {
+                errorMessage = 'Пожалуйста, выберите набор из списка.';
+            }
+
+            // Если есть ошибка - показываем её и выходим
+            if (errorMessage) {
+                alert(errorMessage);
                 return;
             }
 
-            alert(`Спасибо, ${name}! \nВаша заявка на набор "${product}" успешно оформлена.\nМы свяжемся с вами по номеру ${phone} в ближайшее время.`);
+            // Если всё хорошо - формируем красивое сообщение
+            const successMessage = `✅ Спасибо, ${name}!\n\nВаша заявка на набор "${product}" успешно оформлена.\nМы свяжемся с вами по номеру ${phone} в ближайшее время.`;
             
+            alert(successMessage);
+            
+            // Очищаем форму после успешной отправки
             orderForm.reset();
         });
     }
